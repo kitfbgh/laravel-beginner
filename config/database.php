@@ -62,6 +62,22 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        'mysql' => [
+            'read' => [
+                'host' => env('DB_HOST', '127.0.0.1'),
+                'username' => env('DB_USERNAME', 'root'),
+                'password' => env('DB_PASSWORD', '123456'),
+                'port' => env('DB_PORT', '3306'),
+            ],
+            'write' => [
+                'host' => env('DB_HOST', '127.0.0.1'),
+                'username' => env('DB_USERNAME', 'root'),
+                'password' => env('DB_PASSWORD', '123456'),
+                'port' => env('DB_PORT', '3306'),
+            ],
+            'driver' => 'mysql',
+            'database' => 'test',
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
