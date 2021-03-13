@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProfileController extends Controller
 {
@@ -29,5 +31,24 @@ class ProfileController extends Controller
                 ],
             ]
         );
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function cache(Request $request)
+    {
+        if ($cacheTime = Cache::get('profileCacheTime')) {
+            return response()->json([
+                'time' => $cacheTime,
+             ]);
+        }
+
+        $now = Carbon::now();
+        Cache::set('profileCacheTime', $now, 60);
+
+        return response()->json([
+            'time' => $now,
+        ]);
     }
 }

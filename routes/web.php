@@ -19,3 +19,5 @@ Route::get('/', function () {
 //    return view('profile');
 //});
 Route::get('/profile', 'ProfileController@index');
+
+Route::get('/profile/cache', 'ProfileController@cache');
