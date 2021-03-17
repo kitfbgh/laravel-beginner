@@ -25,7 +25,7 @@
                 @if (count($records))
                     <ul class="list-group">
                     @foreach ($records as $record)
-                        @component('record')
+                       @component('record')
                             @slot('title')
                                 {{ $record['id'] }}
                             @endslot
