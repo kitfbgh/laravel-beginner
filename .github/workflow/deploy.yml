@@ -3,7 +3,7 @@ name: Laravel pages
 on:
   push:
     branches:
-      - master  # Set a branch name to trigger deployment
+      - kitfbgh  # Set a branch name to trigger deployment
 
 jobs:
   deploy:
