@@ -1,9 +1,9 @@
-name: Laravel pages
+name: github pages
 
 on:
   push:
     branches:
-      - kitfbgh  # Set a branch name to trigger deployment
+      - master  # Set a branch name to trigger deployment
 
 jobs:
   deploy:
@@ -14,12 +14,8 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      
-
-      - name: Build jigsaw
+      - name: Build PHP
         uses: docker://php:7.4
-        with:
-          args: php vendor/bin/jigsaw build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
