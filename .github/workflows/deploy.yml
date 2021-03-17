@@ -37,6 +37,7 @@ jobs:
 
       - name: Build PHP
         uses: docker://php:7.4
+        wuth:
           args: php artisan serve
 
       - name: Deploy
