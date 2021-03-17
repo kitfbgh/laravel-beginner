@@ -1,0 +1,34 @@
+name: Laravel pages
+
+on:
+  push:
+    branches:
+      - master  # Set a branch name to trigger deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Install Dependencies
+        uses: MilesChou/composer-action/7.4@master
+        with:
+          args: install
+
+      - name: Build jigsaw
+        uses: docker://php:7.4
+        with:
+          args: php vendor/bin/jigsaw build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
