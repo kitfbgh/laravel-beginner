@@ -17,16 +17,53 @@ class ProfileController extends Controller
         return view(
             'profile',
             [
-                'name' => 'Controller Name',
-                'id' => 1245,
+                'name' => 'Natz Liu',
+                'id' => 1234,
                 'records' => [
                     [
                         'id' => 1,
-                        'text' => '1234',
+                        'text' => 'AWS',
+                        'url' => 'profile/aws',
                     ],
                     [
                         'id' => 2,
-                        'text' => '1234',
+                        'text' => 'Database',
+                        'url' => 'profile/database',
+                    ],
+                    [
+                        'id' => 3,
+                        'text' => 'CI/CD',
+                        'url' => 'profile/cicd',
+                    ],
+                    [
+                        'id' => 4,
+                        'text' => 'Docker',
+                        'url' => 'profile/docker',
+                    ],
+                    [
+                        'id' => 5,
+                        'text' => 'PHP Basic',
+                        'url' => 'profile/php_basic',
+                    ],
+                    [
+                        'id' => 6,
+                        'text' => 'Git Basic',
+                        'url' => 'profile/git_basic',
+                    ],
+                    [
+                        'id' => 7,
+                        'text' => 'Laravel',
+                        'url' => 'profile/laravel',
+                    ],
+                    [
+                        'id' => 8,
+                        'text' => 'Design Pattern',
+                        'url' => 'profile/designpattern',
+                    ],
+                    [
+                        'id' => 9,
+                        'text' => 'Criptografia',
+                        'url' => 'profile/criptografia',
                     ],
                 ],
             ]

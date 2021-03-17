@@ -21,6 +21,7 @@
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-primary profileBtn">Get</button>
+                    <p class="result"></p>
                 </div>
                 @if (count($records))
                     <ul class="list-group">
@@ -29,13 +30,11 @@
                             @slot('title')
                                 {{ $record['id'] }}
                             @endslot
-                            {{ $record['text'] }}
+                            <a href="{{ $record['url'] }}">{{ $record['text'] }}</a>
                         @endcomponent
                     @endforeach
                     </ul>
                 @endif
-                <div class="result">
-                </div>
             </div>
         </div>
     </body>
