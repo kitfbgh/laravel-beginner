@@ -47,7 +47,7 @@
                 url: '/api/profile/info',
                 dataType: 'json',
                 success: function(data) {
-                    $result.html(data);
+                    $result.html(JSON.stringify(data));
                 },
                 error: function(xhr) {
                     alert(xhr.message);
