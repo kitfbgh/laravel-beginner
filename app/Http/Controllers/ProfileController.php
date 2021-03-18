@@ -22,48 +22,63 @@ class ProfileController extends Controller
                 'records' => [
                     [
                         'id' => 1,
-                        'text' => 'AWS',
+                        'text' => 'AWS雲端基礎概論',
                         'url' => '/aws',
                     ],
                     [
                         'id' => 2,
-                        'text' => 'Database',
+                        'text' => '認識資料庫 L1 + SQL語法',
                         'url' => '/database',
                     ],
                     [
                         'id' => 3,
-                        'text' => 'CI/CD',
+                        'text' => 'CI/CD 基礎概念',
                         'url' => '/cicd',
                     ],
                     [
                         'id' => 4,
-                        'text' => 'Docker',
+                        'text' => 'Docker 入門篇',
                         'url' => '/docker',
                     ],
                     [
                         'id' => 5,
-                        'text' => 'PHP Basic',
+                        'text' => 'PHP 基礎課程(E)',
                         'url' => '/php_basic',
                     ],
                     [
                         'id' => 6,
-                        'text' => 'Git Basic',
+                        'text' => 'Git 入門篇(C)',
                         'url' => '/git_basic',
                     ],
                     [
                         'id' => 7,
-                        'text' => 'Laravel',
+                        'text' => 'Laravel 程式設計(I)',
                         'url' => '/laravel',
                     ],
                     [
                         'id' => 8,
-                        'text' => 'Design Pattern',
+                        'text' => '設計模式基礎',
                         'url' => '/designpattern',
                     ],
                     [
                         'id' => 9,
-                        'text' => 'Criptografia',
+                        'text' => '密碼學基本原理 + 弱點掃描概論',
                         'url' => '/criptografia',
+                    ],
+                    [
+                        'id' => 10,
+                        'text' => '良好的程式撰寫基礎',
+                        'url' => '/goodcode',
+                    ],
+                    [
+                        'id' => 11,
+                        'text' => '搜尋引琴',
+                        'url' => '/searchengine',
+                    ],
+                    [
+                        'id' => 12,
+                        'text' => 'AWS持續整合與部署CI/CD',
+                        'url' => '/aws_cicd',
                     ],
                 ],
             ]
