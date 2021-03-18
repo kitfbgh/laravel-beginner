@@ -1,0 +1,117 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "104-Project OpenApi",
+        "description": "104-Project OpenApi description",
+        "contact": {
+            "email": "a8732987@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/profile/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::profile",
+                "responses": {
+                    "200": {
+                        "description": "獲取現在時間"
+                    }
+                }
+            }
+        },
+        "/api/aws/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::aws",
+                "responses": {
+                    "200": {
+                        "description": "拿取 AWS 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/cicd/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::cicd",
+                "responses": {
+                    "200": {
+                        "description": "拿取 CI/CD 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/criptografia/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::criptografia",
+                "responses": {
+                    "200": {
+                        "description": "拿取 Criptografia 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/database/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::database",
+                "responses": {
+                    "200": {
+                        "description": "拿取 Database 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/designpattern/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::designpattern",
+                "responses": {
+                    "200": {
+                        "description": "拿取 Design Pattern 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/docker/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::docker",
+                "responses": {
+                    "200": {
+                        "description": "拿取 Docker 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/git_basic/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::git_basic",
+                "responses": {
+                    "200": {
+                        "description": "拿取 Git Basic 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/laravel/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::laravel",
+                "responses": {
+                    "200": {
+                        "description": "拿取 Laravel 課程資訊"
+                    }
+                }
+            }
+        },
+        "/api/php_basic/info": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\APIController::php_basic",
+                "responses": {
+                    "200": {
+                        "description": "拿取 PHP Basic 課程資訊"
+                    }
+                }
+            }
+        }
+    }
+}
