@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use App\Models\Course;
 
 class ProfileController extends Controller
 {
@@ -14,73 +16,13 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
+        $courses = Course::all();
         return view(
             'profile',
             [
                 'name' => 'Natz Liu',
                 'id' => 1234,
-                'records' => [
-                    [
-                        'id' => 1,
-                        'text' => 'AWS雲端基礎概論',
-                        'url' => '/aws',
-                    ],
-                    [
-                        'id' => 2,
-                        'text' => '認識資料庫 L1 + SQL語法',
-                        'url' => '/database',
-                    ],
-                    [
-                        'id' => 3,
-                        'text' => 'CI/CD 基礎概念',
-                        'url' => '/cicd',
-                    ],
-                    [
-                        'id' => 4,
-                        'text' => 'Docker 入門篇',
-                        'url' => '/docker',
-                    ],
-                    [
-                        'id' => 5,
-                        'text' => 'PHP 基礎課程(E)',
-                        'url' => '/php_basic',
-                    ],
-                    [
-                        'id' => 6,
-                        'text' => 'Git 入門篇(C)',
-                        'url' => '/git_basic',
-                    ],
-                    [
-                        'id' => 7,
-                        'text' => 'Laravel 程式設計(I)',
-                        'url' => '/laravel',
-                    ],
-                    [
-                        'id' => 8,
-                        'text' => '設計模式基礎',
-                        'url' => '/designpattern',
-                    ],
-                    [
-                        'id' => 9,
-                        'text' => '密碼學基本原理 + 弱點掃描概論',
-                        'url' => '/criptografia',
-                    ],
-                    [
-                        'id' => 10,
-                        'text' => '良好的程式撰寫基礎',
-                        'url' => '/goodcode',
-                    ],
-                    [
-                        'id' => 11,
-                        'text' => '搜尋引琴',
-                        'url' => '/searchengine',
-                    ],
-                    [
-                        'id' => 12,
-                        'text' => 'AWS持續整合與部署CI/CD',
-                        'url' => '/aws_cicd',
-                    ],
-                ],
+                'records' => $courses,
             ]
         );
     }
@@ -107,10 +49,14 @@ class ProfileController extends Controller
     /**
      * @param Request $request
      */
-    public function aws(Request $request)
+    public function course($id)
     {
+        $course = Course::find($id);
         return view(
-            'aws',
+            'course',
+            [
+                'data' => $course,
+            ],
         );
     }
 

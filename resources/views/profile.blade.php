@@ -30,7 +30,7 @@
                             @slot('title')
                                 {{ $record['id'] }}
                             @endslot
-                            <a href="{{ $record['url'] }}">{{ $record['text'] }}</a>
+                            <a href="{{ $record['id'] }}">{{ $record['name'] }}</a>
                         @endcomponent
                     @endforeach
                     </ul>
@@ -43,7 +43,7 @@
         let $result = $('.result');
         $('.profileBtn').click(function(e) {
             $.ajax({
-                url: '/api/profile/info',
+                url: '/api/profile',
                 dataType: 'json',
                 success: function(data) {
                     $result.html(JSON.stringify(data));

@@ -22,20 +22,20 @@ Route::get('/', 'ProfileController@index');
 
 Route::get('/cache', 'ProfileController@cache');
 
-Route::get('/git_basic', 'ProfileController@git_basic');
+Route::get('/5', 'ProfileController@git_basic');
 
-Route::get('/php_basic', 'ProfileController@php_basic');
+Route::get('/1', 'ProfileController@php_basic');
 
-Route::get('/database', 'ProfileController@database');
+Route::get('/12', 'ProfileController@database');
 
-Route::get('/cicd', 'ProfileController@cicd');
+Route::get('/7', 'ProfileController@cicd');
 
-Route::get('/laravel','ProfileController@laravel');
+Route::get('/2','ProfileController@laravel');
 
-Route::get('/docker', 'ProfileController@docker');
+Route::get('/6', 'ProfileController@docker');
 
-Route::get('/aws', 'ProfileController@aws');
+Route::get('{id}', 'ProfileController@course');
 
-Route::get('/criptografia', 'ProfileController@criptografia');
+Route::get('/15', 'ProfileController@criptografia');
 
-Route::get('/designpattern', 'ProfileController@designpattern');
+Route::get('/4', 'ProfileController@designpattern');
