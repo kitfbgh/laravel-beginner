@@ -14,7 +14,7 @@
     <body>
         <div class="container">
             <div class="card">
-                <h5 class="card-header" value="{{ $data['id'] }}">{{ $data['name'] }}</h5>
+                <h5 class="card-header"><div id="id" style="display:none">{{ $data['id'] }}</div>{{ $data['name'] }}</h5>
                 <div class="card-footer">
                     <button class="btn btn-primary profileBtn">Get</button>
                 </div>
@@ -28,7 +28,7 @@
             let $result = $('.result');
             $('.profileBtn').click(function(e) {
                 $.ajax({
-                    url: '/api/8',
+                    url: '/api/' + $('#id').text(),
                     dataType: 'json',
                     success: function(data) {
                         $result.html(JSON.stringify(data));
