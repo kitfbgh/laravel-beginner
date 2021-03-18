@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return redirect('profile');
+    return view('welcome');
+    // return redirect('profile');
 });
 
 //Route::get('/profile', function () {
