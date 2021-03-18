@@ -23,47 +23,47 @@ class ProfileController extends Controller
                     [
                         'id' => 1,
                         'text' => 'AWS',
-                        'url' => 'profile/aws',
+                        'url' => '/aws',
                     ],
                     [
                         'id' => 2,
                         'text' => 'Database',
-                        'url' => 'profile/database',
+                        'url' => '/database',
                     ],
                     [
                         'id' => 3,
                         'text' => 'CI/CD',
-                        'url' => 'profile/cicd',
+                        'url' => '/cicd',
                     ],
                     [
                         'id' => 4,
                         'text' => 'Docker',
-                        'url' => 'profile/docker',
+                        'url' => '/docker',
                     ],
                     [
                         'id' => 5,
                         'text' => 'PHP Basic',
-                        'url' => 'profile/php_basic',
+                        'url' => '/php_basic',
                     ],
                     [
                         'id' => 6,
                         'text' => 'Git Basic',
-                        'url' => 'profile/git_basic',
+                        'url' => '/git_basic',
                     ],
                     [
                         'id' => 7,
                         'text' => 'Laravel',
-                        'url' => 'profile/laravel',
+                        'url' => '/laravel',
                     ],
                     [
                         'id' => 8,
                         'text' => 'Design Pattern',
-                        'url' => 'profile/designpattern',
+                        'url' => '/designpattern',
                     ],
                     [
                         'id' => 9,
                         'text' => 'Criptografia',
-                        'url' => 'profile/criptografia',
+                        'url' => '/criptografia',
                     ],
                 ],
             ]
