@@ -17,42 +17,22 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/profile/info', function () {
-    return ['time' => Carbon\Carbon::now()];
-});
+Route::get('/profile/info', "APIController@profile");
 
-Route::get('/profile/aws/info', function () {
-    return ['course' => 'AWS'];
-});
+Route::get('/aws/info', "APIController@aws");
 
-Route::get('/profile/cicd/info', function () {
-    return ['course' => 'CI/CD'];
-});
+Route::get('/cicd/info', "APIController@cicd");
 
-Route::get('/profile/criptografia/info', function () {
-    return ['course' => 'Criptografia'];
-});
+Route::get('/criptografia/info', "APIController@criptografia");
 
-Route::get('/profile/database/info', function () {
-    return ['course' => 'Database'];
-});
+Route::get('/database/info', "APIController@database");
 
-Route::get('/profile/designpattern/info', function () {
-    return ['course' => 'Design Pattern'];
-});
+Route::get('/designpattern/info', "APIController@designpattern");
 
-Route::get('/profile/docker/info', function () {
-    return ['course' => 'Docker'];
-});
+Route::get('/docker/info', "APIController@docker");
 
-Route::get('/profile/git_basic/info', function () {
-    return ['course' => 'Git_Basic'];
-});
+Route::get('/git_basic/info', "APIController@git_basic");
 
-Route::get('/profile/laravel/info', function () {
-    return ['course' => 'Laravel'];
-});
+Route::get('/laravel/info', "APIController@laravel");
 
-Route::get('/profile/php_basic/info', function () {
-    return ['course' => 'PHP_Basic'];
-});
+Route::get('/php_basic/info', "APIController@php_basic");

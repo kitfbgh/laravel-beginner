@@ -99,6 +99,16 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        /**
+         * sql-tuning-log 使用的 channel，紀錄 debug 等級以上的 log
+         */
+        'sql-tuning' => [
+            'driver' => env('LOG_DRIVER', 'daily'),
+            'path' => env('TRACE_LOG_PATH', storage_path('logs/sql-tuning.log')),
+            'level' => 'debug',
+            'days' => 14,
+        ]
     ],
 
 ];
