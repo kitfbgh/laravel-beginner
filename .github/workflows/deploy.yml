@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - kitfbgh  # Set a branch name to trigger deployment
+      - test
 
 jobs:
   deploy:
