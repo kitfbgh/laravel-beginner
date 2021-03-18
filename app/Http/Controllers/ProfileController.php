@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use App\Models\Course;
+use App\Models\Profile;
 
 class ProfileController extends Controller
 {
