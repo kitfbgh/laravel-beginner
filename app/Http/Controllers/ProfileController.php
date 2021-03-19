@@ -17,13 +17,13 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        // $courses = Course::all();
+        $courses = Course::all();
         return view(
             'profile',
             [
                 'name' => 'Natz Liu',
                 'id' => 1234,
-                'records' => [],
+                'records' => $courses,
             ]
         );
     }
