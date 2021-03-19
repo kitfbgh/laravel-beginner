@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use App\Models\Course;
-use App\Models\Profile;
+use App\Models\Student;
 
 class ProfileController extends Controller
 {
@@ -19,10 +19,8 @@ class ProfileController extends Controller
     {
         $courses = Course::all();
         return view(
-            'profile',
+            'index',
             [
-                'name' => 'Natz Liu',
-                'id' => 1234,
                 'records' => $courses,
             ]
         );

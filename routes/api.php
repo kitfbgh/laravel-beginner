@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('profile', "APIController@profile");
 
-Route::get('{id}', "APIController@course");
+Route::get('course/{id}', "APIController@course");

@@ -22,4 +22,4 @@ Route::get('/', 'ProfileController@index');
 
 Route::get('/cache', 'ProfileController@cache');
 
-Route::get('{id}', 'ProfileController@course');
+Route::get('course/{id}', 'ProfileController@course');
