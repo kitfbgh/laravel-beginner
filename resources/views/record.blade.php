@@ -1,1 +1,1 @@
-<li class="list-group-item">{{$title}} - {{$slot}}</li>
+<li class="list-group-item">{{$title}}   -   {{$slot}}</li>

@@ -15,11 +15,27 @@
         <div class="container">
             <div class="card">
                 <h5 class="card-header"><div id="id" style="display:none">{{ $data['id'] }}</div>{{ $data['name'] }}</h5>
+                <div class="card-body">
+                    <p>Description : {{ $data['description'] }}</p>
+                    <p>Outline : {{ $data['outline'] }}</p>
+                </div>
                 <div class="card-footer">
                     <button class="btn btn-primary profileBtn">Get</button>
                 </div>
                 <div class="result">
                 </div>
+                @if (count($students))
+                    <ul class="list-group">
+                    @foreach ($students as $student)
+                       @component('record')
+                            @slot('title')
+                                StudentID : {{ $student['id'] }}
+                            @endslot
+                            {{ $student['last_name'] }} {{ $student['first_name'] }}
+                        @endcomponent
+                    @endforeach
+                    </ul>
+                @endif
             </div>
         </div>
     </body>

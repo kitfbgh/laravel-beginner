@@ -57,6 +57,7 @@ class ProfileController extends Controller
             'course',
             [
                 'data' => $course,
+                'students' => $course->students,
             ],
         );
     }
