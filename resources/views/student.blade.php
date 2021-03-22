@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="robots" content="noindex, nofollow">
         <meta name="robots" content="noarchive">
-        <title>{{ $data['name'] }}</title>
+        <title>{{ $data['last_name'] }} {{ $data['first_name'] }}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -71,26 +71,22 @@
         @endcomponent
         <div class="container">
             <div class="card">
-                <h5 class="card-header">課程 : {{ $data['name'] }}</h5>
+                <h5 class="card-header">學生 : {{ $data['last_name'] }} {{ $data['first_name'] }}</h5>
                 <div class="card-body">
-                    <p id="id">CourseID : {{ $data['id'] }}</p>
-                    <p>Description : {{ $data['description'] }}</p>
-                    <p>Outline : {{ $data['outline'] }}</p>
+                    <p>StudentID : {{ $data['id'] }}</p>
+                    <p>Email : {{ $profile['email'] }}</p>
+                    <p>Github : <a href={{ $github }}>{{ $profile['github'] }}</a></p>
+                    <p>註冊時間 : {{ $data['register_at'] }}</p>
                 </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary profileBtn">Get</button>
-                </div>
-                <div class="result">
-                </div>
-                @if (count($students))
+                @if (count($courses))
                     <div class="links">
                         <ul class="list-group">
-                        @foreach ($students as $student)
+                        @foreach ($courses as $course)
                             @component('record')
                                 @slot('title')
-                                    StudentID : {{ $student['id'] }}
+                                    CourseID : {{ $course['id'] }}
                                 @endslot
-                                <a href="/student/{{ $student['id'] }}">{{ $student['last_name'] }} {{ $student['first_name'] }}</a>
+                                <a href="/course/{{ $course['id'] }}">{{ $course['name'] }}</a> -  Grade : {{ $course->pivot->grade }}
                             @endcomponent
                         @endforeach
                         </ul>
@@ -99,21 +95,4 @@
             </div>
         </div>
     </body>
-    <script>
-        $(function() {
-            let $result = $('.result');
-            $('.profileBtn').click(function(e) {
-                $.ajax({
-                    url: '/api/course/' + {{ $data['id'] }},
-                    dataType: 'json',
-                    success: function(data) {
-                        $result.html(JSON.stringify(data));
-                    },
-                    error: function(xhr) {
-                        alert(xhr.message);
-                    }
-                });
-            });
-        });
-    </script>
 </html>

@@ -17,6 +17,7 @@ class CreateStudentCourseTable extends Migration
             $table->bigIncrements('id');
             $table->integer('student_id')->unsigned()->default(0);
             $table->integer('course_id')->unsigned()->default(0);
+            $table->integer('grade');
             $table->timestamps();
         });
     }

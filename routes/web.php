@@ -18,8 +18,16 @@
 //Route::get('/profile', function () {
 //    return view('profile');
 //});
-Route::get('/', 'ProfileController@index');
+Route::get('/', function() {
+    return view(
+        'welcome',
+    );
+});
+
+Route::get('index', 'ProfileController@index');
 
 Route::get('/cache', 'ProfileController@cache');
 
-Route::get('course/{id}', 'ProfileController@course');
+Route::get('course/{course_id}', 'ProfileController@course');
+
+Route::get('student/{student_id}', 'ProfileController@student');

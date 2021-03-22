@@ -48,14 +48,31 @@ class ProfileController extends Controller
     /**
      * @param Request $request
      */
-    public function course($id)
+    public function course($course_id)
     {
-        $course = Course::find($id);
+        $course = Course::find($course_id);
         return view(
             'course',
             [
                 'data' => $course,
                 'students' => $course->students,
+            ],
+        );
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function student($student_id)
+    {
+        $student = Student::find($student_id);
+        return view(
+            'student',
+            [
+                'data' => $student,
+                'profile' => $student->profile,
+                'github' => $student->profile->getGithubUrlAttribute(),
+                'courses' => $student->courses,
             ],
         );
     }

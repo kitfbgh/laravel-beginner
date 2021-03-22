@@ -12,103 +12,61 @@
         },
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "https://api-host.dev.app",
+            "description": "測試區主機"
+        },
+        {
+            "url": "https://api-host.production.app",
+            "description": "正式區主機"
+        },
+        {
+            "url": "http://localhost",
+            "description": "Localhost"
+        }
+    ],
     "paths": {
-        "/api/profile/info": {
+        "/api/profile": {
             "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::profile",
+                "tags": [
+                    "Time"
+                ],
+                "summary": "取得此前時間 Summary",
+                "description": "取得此前時間 Description",
+                "operationId": "time",
                 "responses": {
                     "200": {
-                        "description": "獲取現在時間"
+                        "description": "請求成功"
                     }
                 }
             }
         },
-        "/api/aws/info": {
+        "/api/course/{id}": {
             "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::aws",
-                "responses": {
-                    "200": {
-                        "description": "拿取 AWS 課程資訊"
+                "tags": [
+                    "Course"
+                ],
+                "summary": "取得課程詳情",
+                "description": "取得課程詳情",
+                "operationId": "courseShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Course id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
-                }
-            }
-        },
-        "/api/cicd/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::cicd",
+                ],
                 "responses": {
                     "200": {
-                        "description": "拿取 CI/CD 課程資訊"
-                    }
-                }
-            }
-        },
-        "/api/criptografia/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::criptografia",
-                "responses": {
-                    "200": {
-                        "description": "拿取 Criptografia 課程資訊"
-                    }
-                }
-            }
-        },
-        "/api/database/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::database",
-                "responses": {
-                    "200": {
-                        "description": "拿取 Database 課程資訊"
-                    }
-                }
-            }
-        },
-        "/api/designpattern/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::designpattern",
-                "responses": {
-                    "200": {
-                        "description": "拿取 Design Pattern 課程資訊"
-                    }
-                }
-            }
-        },
-        "/api/docker/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::docker",
-                "responses": {
-                    "200": {
-                        "description": "拿取 Docker 課程資訊"
-                    }
-                }
-            }
-        },
-        "/api/git_basic/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::git_basic",
-                "responses": {
-                    "200": {
-                        "description": "拿取 Git Basic 課程資訊"
-                    }
-                }
-            }
-        },
-        "/api/laravel/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::laravel",
-                "responses": {
-                    "200": {
-                        "description": "拿取 Laravel 課程資訊"
-                    }
-                }
-            }
-        },
-        "/api/php_basic/info": {
-            "get": {
-                "operationId": "App\\Http\\Controllers\\APIController::php_basic",
-                "responses": {
-                    "200": {
-                        "description": "拿取 PHP Basic 課程資訊"
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
                     }
                 }
             }
