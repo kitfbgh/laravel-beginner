@@ -40,6 +40,7 @@ class Course extends Model
             'student_course',
             'course_id',
             'student_id'
-        );
+        )
+        ->withTimestamps();
     }
 }

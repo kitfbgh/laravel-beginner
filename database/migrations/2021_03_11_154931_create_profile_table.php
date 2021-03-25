@@ -20,6 +20,8 @@ class CreateProfileTable extends Migration
             $table->string('email');
             $table->string('github', 255);
             $table->timestamps();
+
+            $table->index(['student_id']);
         });
 
     }

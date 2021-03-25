@@ -24,7 +24,7 @@ Route::get('/', function() {
     );
 });
 
-Route::get('index', 'ProfileController@index');
+Route::get('courses', 'ProfileController@index');
 
 Route::get('/cache', 'ProfileController@cache');
 

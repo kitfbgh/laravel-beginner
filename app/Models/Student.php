@@ -70,6 +70,8 @@ class Student extends Model
             'student_course',
             'student_id',
             'course_id'
-        )->withPivot('grade');
+        )
+        ->withPivot('grade')
+        ->withTimestamps();
     }
 }

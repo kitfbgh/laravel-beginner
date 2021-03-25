@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\APIException;
+use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
 
 /*
@@ -17,6 +18,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('profile', "APIController@profile");
 
-Route::get('course/{id}', "APIController@course");
+
+// Route::apiResource('courses', 'CourseController');
+Route::middleware(['apiToken'])->prefix('courses')->group(function () {
+    Route::get('/', 'CourseController@index');
+    Route::post('/', 'CourseController@store');
+    Route::get('/{courseId}', 'CourseController@show');
+    Route::put('/{courseId}', 'CourseController@update');
+    Route::delete('/{courseId}', 'CourseController@destroy');
+});

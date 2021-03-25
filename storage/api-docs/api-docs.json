@@ -70,6 +70,215 @@
                     }
                 }
             }
+        },
+        "/api/courses": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "取得所有課程詳情",
+                "description": "取得所有課程詳情",
+                "operationId": "AllCoursesShow",
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "找不到課程"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "新增課程",
+                "description": "請求時需要附上JWT驗證",
+                "operationId": "courseCreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "課程名稱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "課程描述",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "outline",
+                        "in": "query",
+                        "description": "課程大綱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            }
+        },
+        "/api/courses/{courseId}": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "取得單一課程詳情",
+                "description": "取得單一課程詳情",
+                "operationId": "courseShow",
+                "parameters": [
+                    {
+                        "name": "courseId",
+                        "in": "path",
+                        "description": "Course Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "找不到對應課程"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "刪除文章",
+                "description": "刪除文章",
+                "operationId": "courseDelete",
+                "parameters": [
+                    {
+                        "name": "courseId",
+                        "in": "path",
+                        "description": "Course Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            }
+        },
+        "/api/courses/{id}": {
+            "put": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "更新課程",
+                "description": "更新課程",
+                "operationId": "courseUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Course id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "課程名稱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "課程描述",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "outline",
+                        "in": "query",
+                        "description": "課程大綱",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "Authenticate": {
+                "type": "apiKey",
+                "name": "Authenticate",
+                "in": "header"
+            }
         }
     }
 }

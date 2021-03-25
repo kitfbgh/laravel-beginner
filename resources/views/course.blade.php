@@ -104,7 +104,11 @@
             let $result = $('.result');
             $('.profileBtn').click(function(e) {
                 $.ajax({
-                    url: '/api/course/' + {{ $data['id'] }},
+                    type: 'GET',
+                    url: '/api/courses/' + {{ $data['id'] }},
+                    headers: {
+                        'Authenticate' : 'ada63e98fe50eccb55036d88eda4b2c3709f53c2b65bc0335797067e9a2a5d8b'
+                    },
                     dataType: 'json',
                     success: function(data) {
                         $result.html(JSON.stringify(data));

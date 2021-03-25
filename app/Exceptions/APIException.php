@@ -15,6 +15,6 @@ class APIException extends Exception
         $message = 'API 回傳錯誤，請洽相關人員',
         $code = 500
     ) {
-        parent::__construct($message, 500);
+        parent::__construct($message, $code);
     }
 }
