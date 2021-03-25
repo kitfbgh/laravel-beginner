@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Course;
 use Carbon\Carbon;
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -15,7 +14,6 @@ class CourseTest extends TestCase
 {
     use RefreshDatabase;
     // use DatabaseTransactions;
-    // use DatabaseMigrations;
     use WithoutMiddleware;
     
     /**
@@ -154,7 +152,7 @@ class CourseTest extends TestCase
 
     }
 
-    public function testUpdateFailed()
+    public function testUpdateNoNameFailed()
     {
         Course::create([
             'id' => '5',
@@ -179,7 +177,10 @@ class CourseTest extends TestCase
                 "message"=> "The given data was invalid.",
                 
             ]);
+    }
 
+    public function testUpdateNotFindFailed()
+    {
         $response = $this->json(
             'PUT',
             '/api/courses/999', 
@@ -192,11 +193,11 @@ class CourseTest extends TestCase
         );
 
         $response->assertStatus(404)
-        ->assertExactJson([
+            ->assertExactJson([
             
-            "message"=> "課程找不到",
+                "message"=> "課程找不到",
             
-        ]); 
+            ]); 
     }
 
     public function testDeleteSuccess()

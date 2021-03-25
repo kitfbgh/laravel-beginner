@@ -5,7 +5,6 @@ use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Repositories\CourseRepository;
 use Exception;
-use App\Exceptions\APIException;
 
 class CourseService
 {
@@ -33,7 +32,7 @@ class CourseService
             throw new Exception('invalid course id');
         }
         if (! $course = $this->repo->getCourseById($id)) {
-            throw new APIException('找不到對應課程', 404);
+            throw new Exception('course not found');
         }
 
         return new CourseResource($course);

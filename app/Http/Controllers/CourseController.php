@@ -10,14 +10,6 @@ use App\Http\Resources\CourseResource;
 use App\Services\CourseService;
 use Illuminate\Support\Facades\Validator;
 
-/**
-*  @OA\SecurityScheme(
-*         securityScheme="Authenticate",
-*         type="apiKey",
-*         in="header",
-*         name="Authenticate"
-*     )
-*/
 class CourseController extends Controller
 {
 
@@ -284,8 +276,8 @@ class CourseController extends Controller
      *      path="/api/courses/{courseId}",
      *      operationId="courseDelete",
      *      tags={"Course"},
-     *      summary="刪除文章",
-     *      description="刪除文章",
+     *      summary="刪除課程",
+     *      description="刪除課程",
      * 
      *      security={
      *          {

@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "104-Project OpenApi",
-        "description": "104-Project OpenApi description",
+        "title": "104-Project",
+        "description": "Laravel learning API",
         "contact": {
             "email": "a8732987@gmail.com"
         },
@@ -27,50 +27,6 @@
         }
     ],
     "paths": {
-        "/api/profile": {
-            "get": {
-                "tags": [
-                    "Time"
-                ],
-                "summary": "取得此前時間 Summary",
-                "description": "取得此前時間 Description",
-                "operationId": "time",
-                "responses": {
-                    "200": {
-                        "description": "請求成功"
-                    }
-                }
-            }
-        },
-        "/api/course/{id}": {
-            "get": {
-                "tags": [
-                    "Course"
-                ],
-                "summary": "取得課程詳情",
-                "description": "取得課程詳情",
-                "operationId": "courseShow",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Course id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "請求成功"
-                    },
-                    "404": {
-                        "description": "資源不存在"
-                    }
-                }
-            }
-        },
         "/api/courses": {
             "get": {
                 "tags": [
@@ -181,8 +137,8 @@
                 "tags": [
                     "Course"
                 ],
-                "summary": "刪除文章",
-                "description": "刪除文章",
+                "summary": "刪除課程",
+                "description": "刪除課程",
                 "operationId": "courseDelete",
                 "parameters": [
                     {

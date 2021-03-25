@@ -38,8 +38,18 @@ jobs:
         
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
+
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
       
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+          CACHE_DRIVER: array
+          SESSION_DRIVER: array
+          QUEUE_DRIVER: sync
+
         run: vendor/bin/phpunit
