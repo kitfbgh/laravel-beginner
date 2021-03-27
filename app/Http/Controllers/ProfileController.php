@@ -55,7 +55,7 @@ class ProfileController extends Controller
             'course',
             [
                 'data' => $course,
-                'students' => $course->students,
+                'students' => $course->students()->get(),
             ],
         );
     }
@@ -72,7 +72,7 @@ class ProfileController extends Controller
                 'data' => $student,
                 'profile' => $student->profile,
                 'github' => $student->profile->getGithubUrlAttribute(),
-                'courses' => $student->courses,
+                'courses' => $student->courses()->get(),
             ],
         );
     }

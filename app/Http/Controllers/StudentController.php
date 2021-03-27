@@ -2,34 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Course;
-use Exception;
 use App\Exceptions\APIException;
-use App\Http\Resources\CourseResource;
-use App\Services\CourseService;
+use App\Http\Resources\StudentDataResource;
+use App\Http\Resources\StudentResource;
+use App\Models\Student;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Exception;
 
-class CourseController extends Controller
+class StudentController extends Controller
 {
 
     /**
-    * @var CourseService
-    */
-    private $service;
-
-    public function __construct(CourseService $service)
-    {
-        $this->service = $service;
-    }
-
-    /**
      * @OA\Get(
-     *     path="/api/courses",
-     *     operationId="AllCoursesShow",
-     *     tags={"Course"},
-     *     summary="取得所有課程詳情",
-     *     description="取得所有課程詳情",
+     *     path="/api/Students",
+     *     operationId="AllStudentsShow",
+     *     tags={"Student"},
+     *     summary="取得所有學生詳情",
+     *     description="取得所有學生詳情",
      * 
      *      security={
      *          {
@@ -43,22 +34,22 @@ class CourseController extends Controller
      *     ),
      *     @OA\Response(
      *         response=404,
-     *         description="找不到課程",
+     *         description="找不到學生",
      *     ),
      * )
      */
     public function index()
     {
-        $courses = Course::all();
-        return CourseResource::collection($courses);
+        $students = Student::all();
+        return StudentDataResource::collection($students);
     }
 
     /**
      * @OA\POST(
-     *     path="/api/courses",
-     *     operationId="courseCreate",
-     *     tags={"Course"},
-     *     summary="新增課程",
+     *     path="/api/students",
+     *     operationId="studentCreate",
+     *     tags={"Student"},
+     *     summary="新增學生",
      *     description="請求時需要附上JWT驗證",
      * 
      *     security={
@@ -68,8 +59,8 @@ class CourseController extends Controller
      *     },
      * 
      *     @OA\Parameter(
-     *          name="name",
-     *          description="課程名稱",
+     *          name="firstname",
+     *          description="性",
      *          required=false,
      *          in="query",
      *          @OA\Schema(
@@ -78,8 +69,8 @@ class CourseController extends Controller
      *      ),
      * 
      *      @OA\Parameter(
-     *           name="description",
-     *           description="課程描述",
+     *           name="lastname",
+     *           description="名",
      *           required=false,
      *           in="query",
      *           @OA\Schema(
@@ -87,15 +78,6 @@ class CourseController extends Controller
      *           )
      *      ),
      * 
-     *      @OA\Parameter(
-     *           name="outline",
-     *           description="課程大綱",
-     *           required=false,
-     *           in="query",
-     *           @OA\Schema(
-     *               type="string"
-     *           )
-     *      ),
      * 
      *     @OA\Response(
      *         response="200", 
@@ -110,7 +92,7 @@ class CourseController extends Controller
     /**
     * Display the specified resource.
     *
-    * @param int $courseId
+    * @param int $studentId
     * @return \Illuminate\Http\JsonResponse
     * @throws APIException
     * @throws \Exception
@@ -118,7 +100,8 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:20',
+            'first_name' => 'required|string|max:20',
+            'last_name' => 'required|string|max:20',
         ]);
 
         if ($validator->fails()) {
@@ -126,23 +109,23 @@ class CourseController extends Controller
             throw new APIException('驗證錯誤' , 422);
         }
 
-        $courseForm = [
-            'name' => $request->get('name'),
-            'description' => trim($request->get('description')) ?? '',
-            'outline' => $request->get('outline') ?? '',
+        $studentForm = [
+            'first_name' => $request->get('first_name'),
+            'last_name' => trim($request->get('last_name')) ?? '',
+            'register_at' => Carbon::now(),
         ];
-        $status = Course::create($courseForm);
+        $status = Student::create($studentForm);
 
         return ['success' => $status];
     }
 
     /**
      * @OA\Get(
-     *     path="/api/courses/{courseId}",
-     *     operationId="courseShow",
-     *     tags={"Course"},
-     *     summary="取得單一課程詳情",
-     *     description="取得單一課程詳情",
+     *     path="/api/students/{studentId}",
+     *     operationId="studentShow",
+     *     tags={"Student"},
+     *     summary="取得單一學生詳情",
+     *     description="取得單一學生詳情",
      * 
      *     security={
      *          {
@@ -151,8 +134,8 @@ class CourseController extends Controller
      *      },
      * 
      *     @OA\Parameter(
-     *         name="courseId",
-     *         description="Course Id",
+     *         name="studentId",
+     *         description="Student Id",
      *         required=true,
      *         in="path",
      *         @OA\Schema(
@@ -165,40 +148,37 @@ class CourseController extends Controller
      *     ),
      *     @OA\Response(
      *         response=404,
-     *         description="找不到對應課程",
+     *         description="找不到對應學生",
      *     ),
      * )
      */
     /**
     * Display the specified resource.
     *
-    * @param int $courseId
+    * @param int $studentId
     * @return \Illuminate\Http\JsonResponse
     * @throws APIException
     * @throws \Exception
     */
-    public function show($courseId)
+    public function show($studentId)
     {
-        try {
-            $course = $this->service->getCourseById($courseId);
-        } catch (Exception $e) {
-            throw new APIException('找不到對應課程', 404);
+        if (! $student = Student::find($studentId)) {
+            throw new APIException('找不到對應學生', 404);
         }
         return response()->json([
-            'name' => $course->name,
-            'description' => $course->description,
-            'outline' => $course->outline,
+            'name' => $student->getFullNameAttribute(),
+            'register_at' => $student['register_at'],
         ]);
     }
 
 
     /**
      * @OA\PUT(
-     *      path="/api/courses/{id}",
-     *      operationId="courseUpdate",
-     *      tags={"Course"},
-     *      summary="更新課程",
-     *      description="更新課程",
+     *      path="/api/students/{studentId}",
+     *      operationId="studentUpdate",
+     *      tags={"Student"},
+     *      summary="更新學生資訊",
+     *      description="更新學生資訊",
      * 
      *      security={
      *          {
@@ -208,7 +188,7 @@ class CourseController extends Controller
      * 
      *      @OA\Parameter(
      *          name="id",
-     *          description="Course id",
+     *          description="Student id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -216,8 +196,8 @@ class CourseController extends Controller
      *          )
      *      ),
      *      @OA\Parameter(
-     *          name="name",
-     *          description="課程名稱",
+     *          name="firstname",
+     *          description="性",
      *          required=false,
      *          in="query",
      *          @OA\Schema(
@@ -225,23 +205,15 @@ class CourseController extends Controller
      *          )
      *      ),
      *      @OA\Parameter(
-     *          name="description",
-     *          description="課程描述",
+     *          name="lastname",
+     *          description="名",
      *          required=false,
      *          in="query",
      *          @OA\Schema(
      *              type="string"
      *          )
      *      ),
-     *      @OA\Parameter(
-     *          name="outline",
-     *          description="課程大綱",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *      ),
+     *      
      *      @OA\Response(
      *          response=200,
      *          description="請求成功"
@@ -251,33 +223,34 @@ class CourseController extends Controller
      *          description="資源不存在"
      *       )
      * )
-     * Update course content
+     * Update student content
      */
-    public function update(Request $request, $courseId)
+    public function update(Request $request, $studentId)
     {
         try {
             $request->validate([
-                'name' => 'required|string|max:20',
+                'first_name' => 'required|string|max:20',
+                'last_name' => 'required|string|max:20',
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new APIException($e->getMessage() , 422);
         }
 
-        if (! $course = Course::find($courseId)) {
-            throw new APIException('課程找不到', 404);
+        if (! $student = Student::find($studentId)) {
+            throw new APIException('學生找不到', 404);
         }
-        $status = $course->update($request->toArray());
+        $status = $student->update($request->toArray());
         return ['success' => $status];
     }
 
 
     /**
      * @OA\Delete(
-     *      path="/api/courses/{courseId}",
-     *      operationId="courseDelete",
-     *      tags={"Course"},
-     *      summary="刪除課程",
-     *      description="刪除課程",
+     *      path="/api/students/{studentId}",
+     *      operationId="studentDelete",
+     *      tags={"Student"},
+     *      summary="刪除學生資訊",
+     *      description="刪除學生資訊",
      * 
      *      security={
      *          {
@@ -286,8 +259,8 @@ class CourseController extends Controller
      *      },
      * 
      *      @OA\Parameter(
-     *          name="courseId",
-     *          description="Course Id",
+     *          name="studentId",
+     *          description="Student Id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -303,18 +276,15 @@ class CourseController extends Controller
      *          description="資源不存在"
      *       )
      * )
-     * Delete course
+     * Delete student
      */
-    public function destroy($courseId)
+    public function destroy($studentId)
     {
-        try {
-            $course = $this->service->getCourseById($courseId);
-        } catch (Exception $e) {
-            throw new APIException('找不到對應課程', 404);
+        if (! $student = Student::find($studentId)) {
+            throw new APIException('找不到對應學生', 404);
         }
 
-        $status = $course->delete();
+        $status = $student->delete();
         return ['success' => $status];
     }
-
 }

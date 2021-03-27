@@ -226,6 +226,188 @@
                     }
                 ]
             }
+        },
+        "/api/Students": {
+            "get": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "取得所有學生詳情",
+                "description": "取得所有學生詳情",
+                "operationId": "AllStudentsShow",
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "找不到學生"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            }
+        },
+        "/api/students": {
+            "post": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "新增學生",
+                "description": "請求時需要附上JWT驗證",
+                "operationId": "studentCreate",
+                "parameters": [
+                    {
+                        "name": "firstname",
+                        "in": "query",
+                        "description": "性",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastname",
+                        "in": "query",
+                        "description": "名",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            }
+        },
+        "/api/students/{studentId}": {
+            "get": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "取得單一學生詳情",
+                "description": "取得單一學生詳情",
+                "operationId": "studentShow",
+                "parameters": [
+                    {
+                        "name": "studentId",
+                        "in": "path",
+                        "description": "Student Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "找不到對應學生"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "更新學生資訊",
+                "description": "更新學生資訊",
+                "operationId": "studentUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Student id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "firstname",
+                        "in": "query",
+                        "description": "性",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastname",
+                        "in": "query",
+                        "description": "名",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "刪除學生資訊",
+                "description": "刪除學生資訊",
+                "operationId": "studentDelete",
+                "parameters": [
+                    {
+                        "name": "studentId",
+                        "in": "path",
+                        "description": "Student Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "請求成功"
+                    },
+                    "404": {
+                        "description": "資源不存在"
+                    }
+                },
+                "security": [
+                    {
+                        "Authenticate": []
+                    }
+                ]
+            }
         }
     },
     "components": {

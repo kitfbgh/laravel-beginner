@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Course;
+use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
-class CourseTest extends TestCase
+class StudentTest extends TestCase
 {
     use RefreshDatabase;
     // use DatabaseTransactions;
@@ -34,18 +34,17 @@ class CourseTest extends TestCase
         // $response = $this->postJson('/user', ['name' => 'Sally']);
         // $this->json('POST', '/user', ['name' => 'Sally']);
 
-        $excepted = factory(Course::class)->create();
+        $excepted = factory(Student::class)->create();
 
-        $response = $this->get('/api/courses');
+        $response = $this->get('/api/students');
 
         $response->assertStatus(200)
             ->assertExactJson([
                 'data' => [
                     [
-                    'name' => $excepted->name,
-                    'description' => $excepted->description,
-                    'outline' => $excepted->outline,
-                    'students'=> $excepted->students,
+                    'first_name' => $excepted->first_name,
+                    'last_name' => $excepted->last_name,
+                    'register_at' => $excepted->register_at,
                     ]
                 ]
                 
@@ -54,16 +53,15 @@ class CourseTest extends TestCase
 
     public function testGetSuccess()
     {
-        $excepted = factory(Course::class)->create();
+        $excepted = factory(Student::class)->create();
 
-        $response = $this->get('/api/courses/2');
+        $response = $this->get('/api/students/2');
 
         $response->assertStatus(200)
             ->assertExactJson([
                 
-                'name' => $excepted->name,
-                'description' => $excepted->description,
-                'outline' => $excepted->outline,
+                'name' => $excepted->first_name.' '.$excepted->last_name,
+                'register_at' => $excepted->register_at,
                 
             ]);
     }
@@ -71,11 +69,11 @@ class CourseTest extends TestCase
     public function testGetFailed()
     {
         
-        $response = $this->get('/api/courses/999');
+        $response = $this->get('/api/students/999');
 
         $response->assertStatus(404)
             ->assertExactJson([
-                "message" => "找不到對應課程",
+                "message" => "找不到對應學生",
             ]);
     }
 
@@ -83,11 +81,11 @@ class CourseTest extends TestCase
     {
         $response = $this->json(
             'POST',
-            '/api/courses/', 
+            '/api/students/', 
             [
-                'name' => 'Sally',
-                'description' => 'test',
-                'outline' => 'outline',
+                'first_name' => 'sally',
+                'last_name' => 'test',
+                'register_at' => Carbon::now(),
             ]
 
         );
@@ -95,9 +93,9 @@ class CourseTest extends TestCase
         $response->assertStatus(200)
             ->assertExactJson([
                 "success" => [
-                    'name' => 'Sally',
-                    'description' => 'test',
-                    'outline' => 'outline',
+                    'first_name' => 'sally',
+                    'last_name' => 'test',
+                    'register_at' => '2021-03-23 14:00:00',
                     'updated_at' => '2021-03-23 14:00:00',
                     'created_at' => '2021-03-23 14:00:00',
                     'id' => 3,
@@ -109,7 +107,7 @@ class CourseTest extends TestCase
     {
         $response = $this->json(
             'POST',
-            '/api/courses/', 
+            '/api/students/', 
             [
                 'description' => 'test',
                 'outline' => 'outline',
@@ -125,20 +123,20 @@ class CourseTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        Course::create([
+        Student::create([
             'id' => '4',
-            'name' => '測試課程',
-            'description' => 'test',
-            'outline' => 'test',
+            'first_name' => '測試課程',
+            'last_name' => 'test',
+            'register_at' => Carbon::now(),
         ]);
 
         $response = $this->json(
             'PUT',
-            '/api/courses/4', 
+            '/api/students/4', 
             [
-                'name' => '測試課程',
-                'description' => 'test',
-                'outline' => 'outline',
+                'first_name' => '測試課程',
+                'last_name' => 'test',
+                'register_at' => '2021-03-23 14:00:00',
             ]
 
         );
@@ -154,16 +152,16 @@ class CourseTest extends TestCase
 
     public function testUpdateNoNameFailed()
     {
-        Course::create([
+        Student::create([
             'id' => '5',
-            'name' => '測試課程',
-            'description' => 'test',
-            'outline' => 'test',
+            'first_name' => '測試課程',
+            'last_name' => 'test',
+            'register_at' => Carbon::now(),
         ]);
 
         $response = $this->json(
             'PUT',
-            '/api/courses/5', 
+            '/api/students/5', 
             [
                 'description' => 'test',
                 'outline' => 'outline',
@@ -183,11 +181,11 @@ class CourseTest extends TestCase
     {
         $response = $this->json(
             'PUT',
-            '/api/courses/999', 
+            '/api/students/999', 
             [
-                'name' => 'sad',
-                'description' => 'test',
-                'outline' => 'outline',
+                'first_name' => 'sad',
+                'last_name' => 'test',
+                'register_at' => Carbon::now(),
             ]
 
         );
@@ -195,23 +193,23 @@ class CourseTest extends TestCase
         $response->assertStatus(404)
             ->assertExactJson([
             
-                "message"=> "課程找不到",
+                "message"=> "學生找不到",
             
         ]); 
     }
 
     public function testDeleteSuccess()
     {
-        Course::create([
+        Student::create([
             'id' => '6',
-            'name' => '測試課程',
-            'description' => 'test',
-            'outline' => 'test',
+            'first_name' => '測試課程',
+            'last_name' => 'test',
+            'register_at' => Carbon::now(),
         ]);
 
         $response = $this->json(
             'delete',
-            '/api/courses/6', 
+            '/api/students/6', 
         );
 
         $response->assertStatus(200)
@@ -226,12 +224,12 @@ class CourseTest extends TestCase
     {
         $response = $this->json(
             'delete',
-            '/api/courses/999'
+            '/api/students/999'
         );
 
         $response->assertStatus(404)
             ->assertExactJson([
-                "message" => "找不到對應課程",
+                "message" => "找不到對應學生",
             ]);
     }
 }

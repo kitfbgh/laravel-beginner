@@ -28,3 +28,11 @@ Route::middleware(['apiToken'])->prefix('courses')->group(function () {
     Route::put('/{courseId}', 'CourseController@update');
     Route::delete('/{courseId}', 'CourseController@destroy');
 });
+
+Route::middleware(['apiToken'])->prefix('students')->group(function () {
+    Route::get('/', 'StudentController@index');
+    Route::post('/', 'StudentController@store');
+    Route::get('/{studentId}', 'StudentController@show');
+    Route::put('/{studentId}', 'StudentController@update');
+    Route::delete('/{studentId}', 'StudentController@destroy');
+});

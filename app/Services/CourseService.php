@@ -37,4 +37,6 @@ class CourseService
 
         return new CourseResource($course);
     }
+
+    
 }
