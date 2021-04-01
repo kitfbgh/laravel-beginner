@@ -12,8 +12,7 @@
 ## 建置
 - 建立 Laravel 專案
 ```bash=
-$ composer create-project --prefer-dist laravel/
-laravel 104-project "6.*"
+$ composer create-project --prefer-dist laravel/laravel 104-project "6.*"
 
 $ cd 104-project
 ```
