@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Http\Resources\CourseResource;
@@ -37,6 +38,4 @@ class CourseService
 
         return new CourseResource($course);
     }
-
-    
 }

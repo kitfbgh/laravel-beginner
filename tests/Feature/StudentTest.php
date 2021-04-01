@@ -15,7 +15,7 @@ class StudentTest extends TestCase
     use RefreshDatabase;
     // use DatabaseTransactions;
     use WithoutMiddleware;
-    
+
     /**
      * @throws BindingResolutionException
      */
@@ -47,7 +47,6 @@ class StudentTest extends TestCase
                     'register_at' => $excepted->register_at,
                     ]
                 ]
-                
             ]);
     }
 
@@ -59,16 +58,13 @@ class StudentTest extends TestCase
 
         $response->assertStatus(200)
             ->assertExactJson([
-                
-                'name' => $excepted->first_name.' '.$excepted->last_name,
+                'name' => $excepted->first_name . ' ' . $excepted->last_name,
                 'register_at' => $excepted->register_at,
-                
             ]);
     }
 
     public function testGetFailed()
     {
-        
         $response = $this->get('/api/students/999');
 
         $response->assertStatus(404)
@@ -81,13 +77,12 @@ class StudentTest extends TestCase
     {
         $response = $this->json(
             'POST',
-            '/api/students/', 
+            '/api/students/',
             [
                 'first_name' => 'sally',
                 'last_name' => 'test',
                 'register_at' => Carbon::now(),
             ]
-
         );
 
         $response->assertStatus(200)
@@ -107,12 +102,11 @@ class StudentTest extends TestCase
     {
         $response = $this->json(
             'POST',
-            '/api/students/', 
+            '/api/students/',
             [
                 'description' => 'test',
                 'outline' => 'outline',
             ]
-
         );
 
         $response->assertStatus(422)
@@ -132,22 +126,18 @@ class StudentTest extends TestCase
 
         $response = $this->json(
             'PUT',
-            '/api/students/4', 
+            '/api/students/4',
             [
                 'first_name' => '測試課程',
                 'last_name' => 'test',
                 'register_at' => '2021-03-23 14:00:00',
             ]
-
         );
 
         $response->assertStatus(200)
             ->assertExactJson([
-                
-                    'success'=>true,
-                
+                'success' => true,
             ]);
-
     }
 
     public function testUpdateNoNameFailed()
@@ -161,19 +151,16 @@ class StudentTest extends TestCase
 
         $response = $this->json(
             'PUT',
-            '/api/students/5', 
+            '/api/students/5',
             [
                 'description' => 'test',
                 'outline' => 'outline',
             ]
-
         );
 
         $response->assertStatus(422)
             ->assertExactJson([
-                
-                "message"=> "The given data was invalid.",
-                
+                "message" => "The given data was invalid.",
             ]);
     }
 
@@ -181,21 +168,18 @@ class StudentTest extends TestCase
     {
         $response = $this->json(
             'PUT',
-            '/api/students/999', 
+            '/api/students/999',
             [
                 'first_name' => 'sad',
                 'last_name' => 'test',
                 'register_at' => Carbon::now(),
             ]
-
         );
 
         $response->assertStatus(404)
             ->assertExactJson([
-            
-                "message"=> "學生找不到",
-            
-        ]); 
+                "message" => "學生找不到",
+            ]);
     }
 
     public function testDeleteSuccess()
@@ -209,15 +193,13 @@ class StudentTest extends TestCase
 
         $response = $this->json(
             'delete',
-            '/api/students/6', 
+            '/api/students/6',
         );
 
         $response->assertStatus(200)
             ->assertExactJson([
-            
-                'success'=>true,
-            
-            ]); 
+                'success' => true,
+            ]);
     }
 
     public function testDeleteFailed()

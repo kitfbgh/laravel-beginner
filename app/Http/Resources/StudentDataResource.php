@@ -14,14 +14,12 @@ class StudentDataResource extends JsonResource
      */
     public function toArray($request)
     {
-        $result = [];
-        
         $result = [
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'register_at' => $this->register_at,
         ];
-        
+
         return $result;
     }
 }

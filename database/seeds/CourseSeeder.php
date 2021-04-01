@@ -20,7 +20,6 @@ class CourseSeeder extends Seeder
                 'description' => $faker->text,
                 'outline' => $faker->text,
             ]);
-
         }
     }
 

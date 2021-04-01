@@ -36,7 +36,7 @@ class StudentController extends Controller
 
         if ($validator->fails()) {
             //$messages = $validator->errors()->getMessages();
-            throw new APIException('驗證錯誤' , 422);
+            throw new APIException('驗證錯誤', 422);
         }
 
         $studentForm = [
@@ -76,7 +76,7 @@ class StudentController extends Controller
                 'last_name' => 'required|string|max:20',
             ]);
         } catch (Exception $e) {
-            throw new APIException($e->getMessage() , 422);
+            throw new APIException($e->getMessage(), 422);
         }
 
         if (! $student = Student::find($studentId)) {

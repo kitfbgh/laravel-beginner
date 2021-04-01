@@ -25,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
         DB::listen(function ($query) {
             $sql = $query->sql;
 
@@ -44,8 +43,5 @@ class AppServiceProvider extends ServiceProvider
             Log::channel('sql-tuning')->info($sql);
             Log::channel('sql-tuning')->info($queryString);
         });
-
     }
 }
-
-

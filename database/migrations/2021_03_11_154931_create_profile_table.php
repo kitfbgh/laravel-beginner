@@ -23,7 +23,6 @@ class CreateProfileTable extends Migration
 
             $table->index(['student_id']);
         });
-
     }
 
     /**

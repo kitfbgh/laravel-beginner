@@ -7,15 +7,13 @@
  *     tags={"Course"},
  *     summary="取得所有課程詳情",
  *     description="取得所有課程詳情",
- * 
  *      security={
  *          {
  *               "Authenticate": {}
  *          }
  *      },
- * 
  *     @OA\Response(
- *         response="200", 
+ *         response="200",
  *         description="請求成功"
  *     ),
  *     @OA\Response(
@@ -32,13 +30,11 @@
  *     tags={"Course"},
  *     summary="新增課程",
  *     description="請求時需要附上JWT驗證",
- * 
  *     security={
  *         {
  *              "Authenticate": {}
  *         }
  *     },
- * 
  *     @OA\Parameter(
  *          name="name",
  *          description="課程名稱",
@@ -48,7 +44,6 @@
  *               type="string"
  *          )
  *      ),
- * 
  *      @OA\Parameter(
  *           name="description",
  *           description="課程描述",
@@ -58,7 +53,6 @@
  *               type="string"
  *           )
  *      ),
- * 
  *      @OA\Parameter(
  *           name="outline",
  *           description="課程大綱",
@@ -68,9 +62,8 @@
  *               type="string"
  *           )
  *      ),
- * 
  *     @OA\Response(
- *         response="200", 
+ *         response="200",
  *         description="請求成功"
  *     ),
  *     @OA\Response(
@@ -80,7 +73,6 @@
  * )
  */
 
-
 /**
  * @OA\Get(
  *     path="/api/courses/{courseId}",
@@ -88,13 +80,11 @@
  *     tags={"Course"},
  *     summary="取得單一課程詳情",
  *     description="取得單一課程詳情",
- * 
  *     security={
  *          {
  *              "Authenticate": {}
  *          }
  *      },
- * 
  *     @OA\Parameter(
  *         name="courseId",
  *         description="Course Id",
@@ -105,7 +95,7 @@
  *         )
  *     ),
  *     @OA\Response(
- *         response="200", 
+ *         response="200",
  *         description="請求成功"
  *     ),
  *     @OA\Response(
@@ -122,13 +112,11 @@
  *      tags={"Course"},
  *      summary="更新課程",
  *      description="更新課程",
- * 
  *      security={
  *          {
  *              "Authenticate": {}
  *          }
  *      },
- * 
  *      @OA\Parameter(
  *          name="id",
  *          description="Course id",
@@ -184,13 +172,11 @@
  *      tags={"Course"},
  *      summary="刪除課程",
  *      description="刪除課程",
- * 
  *      security={
  *          {
  *               "Authenticate": {}
  *          }
  *      },
- * 
  *      @OA\Parameter(
  *          name="courseId",
  *          description="Course Id",

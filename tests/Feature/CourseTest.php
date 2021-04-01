@@ -15,7 +15,7 @@ class CourseTest extends TestCase
     use RefreshDatabase;
     // use DatabaseTransactions;
     use WithoutMiddleware;
-    
+
     /**
      * @throws BindingResolutionException
      */
@@ -45,10 +45,9 @@ class CourseTest extends TestCase
                     'name' => $excepted->name,
                     'description' => $excepted->description,
                     'outline' => $excepted->outline,
-                    'students'=> $excepted->students,
+                    'students' => $excepted->students,
                     ]
                 ]
-                
             ]);
     }
 
@@ -60,17 +59,14 @@ class CourseTest extends TestCase
 
         $response->assertStatus(200)
             ->assertExactJson([
-                
                 'name' => $excepted->name,
                 'description' => $excepted->description,
                 'outline' => $excepted->outline,
-                
             ]);
     }
 
     public function testGetFailed()
     {
-        
         $response = $this->get('/api/courses/999');
 
         $response->assertStatus(404)
@@ -83,13 +79,12 @@ class CourseTest extends TestCase
     {
         $response = $this->json(
             'POST',
-            '/api/courses/', 
+            '/api/courses/',
             [
                 'name' => 'Sally',
                 'description' => 'test',
                 'outline' => 'outline',
             ]
-
         );
 
         $response->assertStatus(200)
@@ -109,12 +104,11 @@ class CourseTest extends TestCase
     {
         $response = $this->json(
             'POST',
-            '/api/courses/', 
+            '/api/courses/',
             [
                 'description' => 'test',
                 'outline' => 'outline',
             ]
-
         );
 
         $response->assertStatus(422)
@@ -134,22 +128,18 @@ class CourseTest extends TestCase
 
         $response = $this->json(
             'PUT',
-            '/api/courses/4', 
+            '/api/courses/4',
             [
                 'name' => '測試課程',
                 'description' => 'test',
                 'outline' => 'outline',
             ]
-
         );
 
         $response->assertStatus(200)
             ->assertExactJson([
-                
-                    'success'=>true,
-                
+                'success' => true,
             ]);
-
     }
 
     public function testUpdateNoNameFailed()
@@ -163,19 +153,16 @@ class CourseTest extends TestCase
 
         $response = $this->json(
             'PUT',
-            '/api/courses/5', 
+            '/api/courses/5',
             [
                 'description' => 'test',
                 'outline' => 'outline',
             ]
-
         );
 
         $response->assertStatus(422)
             ->assertExactJson([
-                
-                "message"=> "The given data was invalid.",
-                
+                "message" => "The given data was invalid.",
             ]);
     }
 
@@ -183,21 +170,18 @@ class CourseTest extends TestCase
     {
         $response = $this->json(
             'PUT',
-            '/api/courses/999', 
+            '/api/courses/999',
             [
                 'name' => 'sad',
                 'description' => 'test',
                 'outline' => 'outline',
             ]
-
         );
 
         $response->assertStatus(404)
             ->assertExactJson([
-            
-                "message"=> "課程找不到",
-            
-        ]); 
+                "message" => "課程找不到",
+        ]);
     }
 
     public function testDeleteSuccess()
@@ -211,15 +195,13 @@ class CourseTest extends TestCase
 
         $response = $this->json(
             'delete',
-            '/api/courses/6', 
+            '/api/courses/6',
         );
 
         $response->assertStatus(200)
             ->assertExactJson([
-            
-                'success'=>true,
-            
-            ]); 
+                'success' => true,
+            ]);
     }
 
     public function testDeleteFailed()

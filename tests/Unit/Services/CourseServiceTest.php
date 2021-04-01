@@ -58,7 +58,7 @@ class CourseServiceTest extends TestCase
 
     /**
      * @testdox 測試取得不到資料
-     * @dataProvider testdatProvider 
+     * @dataProvider testdatProvider
      *
      */
     public function testGetByEmpty($id)

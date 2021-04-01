@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\Student_Course;
+use App\Models\StudentCourse;
 use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Student_CourseSeeder extends Seeder
+class StudentCourseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,14 +21,16 @@ class Student_CourseSeeder extends Seeder
         $students_count = count($all_student);
         $i = 1;
         while (true) {
-            if($i > 15) break;
+            if ($i > 15) {
+                break;
+            }
             $studentID_rand = rand(1, $students_count);
             $courseID_rand = rand(1, $courses_count);
-            $sql = 'select * from student_course where student_id = '.strval($studentID_rand).' and course_id = '.strval($courseID_rand);
+            $sql = 'select * from student_course where student_id = '
+                . strval($studentID_rand) . ' and course_id = ' . strval($courseID_rand);
             $data = DB::select($sql);
-            if(count($data) === 0)
-            {
-                Student_Course::create([
+            if (count($data) === 0) {
+                StudentCourse::create([
                     'id' => $i,
                     'student_id' => $studentID_rand,
                     'course_id' => $courseID_rand,

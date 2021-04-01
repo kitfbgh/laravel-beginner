@@ -1,4 +1,5 @@
 <?php
+
 /**
 * @OA\server(
 *      url = "https://api-host.dev.app",

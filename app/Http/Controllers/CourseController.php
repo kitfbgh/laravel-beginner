@@ -45,7 +45,7 @@ class CourseController extends Controller
 
         if ($validator->fails()) {
             //$messages = $validator->errors()->getMessages();
-            throw new APIException('驗證錯誤' , 422);
+            throw new APIException('驗證錯誤', 422);
         }
 
         $courseForm = [
@@ -87,7 +87,7 @@ class CourseController extends Controller
                 'name' => 'required|string|max:20',
             ]);
         } catch (\Exception $e) {
-            throw new APIException($e->getMessage() , 422);
+            throw new APIException($e->getMessage(), 422);
         }
 
         if (! $course = Course::find($courseId)) {
@@ -108,5 +108,4 @@ class CourseController extends Controller
         $status = $course->delete();
         return ['success' => $status];
     }
-
 }

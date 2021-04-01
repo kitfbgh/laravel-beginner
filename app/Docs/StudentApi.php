@@ -7,15 +7,13 @@
  *     tags={"Student"},
  *     summary="取得所有學生詳情",
  *     description="取得所有學生詳情",
- * 
  *      security={
  *          {
  *               "Authenticate": {}
  *          }
  *      },
- * 
  *     @OA\Response(
- *         response="200", 
+ *         response="200",
  *         description="請求成功"
  *     ),
  *     @OA\Response(
@@ -32,13 +30,11 @@
  *     tags={"Student"},
  *     summary="新增學生",
  *     description="請求時需要附上JWT驗證",
- * 
  *     security={
  *         {
  *              "Authenticate": {}
  *         }
  *     },
- * 
  *     @OA\Parameter(
  *          name="firstname",
  *          description="性",
@@ -48,7 +44,6 @@
  *               type="string"
  *          )
  *      ),
- * 
  *      @OA\Parameter(
  *           name="lastname",
  *           description="名",
@@ -58,10 +53,8 @@
  *               type="string"
  *           )
  *      ),
- * 
- * 
  *     @OA\Response(
- *         response="200", 
+ *         response="200",
  *         description="請求成功"
  *     ),
  *     @OA\Response(
@@ -78,13 +71,11 @@
  *     tags={"Student"},
  *     summary="取得單一學生詳情",
  *     description="取得單一學生詳情",
- * 
  *     security={
  *          {
  *              "Authenticate": {}
  *          }
  *      },
- * 
  *     @OA\Parameter(
  *         name="studentId",
  *         description="Student Id",
@@ -95,7 +86,7 @@
  *         )
  *     ),
  *     @OA\Response(
- *         response="200", 
+ *         response="200",
  *         description="請求成功"
  *     ),
  *     @OA\Response(
@@ -112,13 +103,11 @@
  *      tags={"Student"},
  *      summary="更新學生資訊",
  *      description="更新學生資訊",
- * 
  *      security={
  *          {
  *              "Authenticate": {}
  *          }
  *      },
- * 
  *      @OA\Parameter(
  *          name="id",
  *          description="Student id",
@@ -146,7 +135,6 @@
  *              type="string"
  *          )
  *      ),
- *      
  *      @OA\Response(
  *          response=200,
  *          description="請求成功"
@@ -166,13 +154,11 @@
  *      tags={"Student"},
  *      summary="刪除學生資訊",
  *      description="刪除學生資訊",
- * 
  *      security={
  *          {
  *               "Authenticate": {}
  *          }
  *      },
- * 
  *      @OA\Parameter(
  *          name="studentId",
  *          description="Student Id",

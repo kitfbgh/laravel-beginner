@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student_Course extends Model
+class StudentCourse extends Model
 {
     /**
      * The table associated with the model.
@@ -23,7 +23,6 @@ class Student_Course extends Model
         'course_id',
         'grade',
     ];
-
 
     public function students()
     {

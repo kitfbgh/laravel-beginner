@@ -13,7 +13,7 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        for ($i = 1; $i <= 10; $i++ ) {
+        for ($i = 1; $i <= 10; $i++) {
             $fakerDatetime =  $faker->dateTimeBetween('-30 years', 'now');
             DB::table('profile')->insert([
                 'id' => $i,
