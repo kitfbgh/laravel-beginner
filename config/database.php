@@ -76,7 +76,7 @@ return [
                 'port' => env('DB_PORT', '3306'),
             ],
             'driver' => 'mysql',
-            'database' => 'Laravel',
+            'database' => 'laravel',
         ],
         'testmysql' => [
             'read' => [
