@@ -30,7 +30,7 @@ class CourseController extends Controller
     }
 
     /**
-    * Display the specified resource.
+    * Store the Course.
     *
     * @param int $courseId
     * @return \Illuminate\Http\JsonResponse
